@@ -3,12 +3,27 @@
  */
 package com.srin.myapp;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import com.srin.myapp.dao.MajorDao;
+import com.srin.myapp.dao.StudentDao;
+import com.srin.myapp.handler.StudentHandler;
+import com.srin.myapp.handler.StudentHandlerWithId;
+import ratpack.guice.Guice;
+import ratpack.server.RatpackServer;
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+public class App {
+    public static void main(String[] args) throws Exception {
+        RatpackServer.start(ratpackServerSpec -> ratpackServerSpec
+                .registry(Guice.registry(bindingsSpec -> bindingsSpec
+                                .bind(StudentDao.class)
+                                .bind(MajorDao.class)
+                        )
+                )
+                .handlers(chain -> chain
+                    .prefix("student", studentChain -> studentChain
+                        .path(new StudentHandler())
+                        .path(":id", new StudentHandlerWithId())
+                    )
+                )
+        );
     }
 }
