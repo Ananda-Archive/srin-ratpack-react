@@ -1,8 +1,9 @@
-import { Container, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Box, TextField, Select, MenuItem, FormControl, InputLabel, Grid, Fab } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import MajorService from "../services/MajorService"
 import StudentService from "../services/StudentService"
 import TableData from "../components/TableData"
+import SnackNotification from "../components/SnackNotification"
+import { Container, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Box, TextField, Select, MenuItem, FormControl, InputLabel, Grid, Fab } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 
 const Student = () => {
@@ -48,6 +49,10 @@ const Student = () => {
     const [createDialog, setCreateDialog] = useState(false)
     const [updateDialog, setUpdateDialog] = useState(false)
     const [deleteDialog, setDeleteDialog] = useState(false)
+    // Snackbar Event
+    const [snackOpen, setSnackOpen] = useState(false)
+    const [snackSeverity, setSnackSeverity] = useState("success")
+    const [snackMessage, setSnackMessage] = useState("")
 
     // =======
 
@@ -62,6 +67,7 @@ const Student = () => {
         else if (dialog === 2) setUpdateDialog(true)
         else if (dialog === 3) setDeleteDialog(true)
     }, [dialog])
+
     // SetStudent Handler Function
     const handleStudentChance = (data) => {
         setStudent(data)
@@ -114,9 +120,14 @@ const Student = () => {
         StudentService.createStudent(student)
             .then((res) => {
                 console.log(res)
+                setSnackMessage("Insert Success")
+                setSnackSeverity("success")
             }).catch((err) => {
                 console.log(err)
+                setSnackMessage("Insert Failed")
+                setSnackSeverity("error")
             }).finally(() => {
+                setSnackOpen(true)
                 handleCreateDialog()
                 getAllStudents()
             })
@@ -125,9 +136,14 @@ const Student = () => {
         StudentService.updateStudent(student)
             .then((res) => {
                 console.log(res)
+                setSnackMessage("Update Success")
+                setSnackSeverity("success")
             }).catch((err) => {
                 console.log(err)
+                setSnackMessage("Update Failed")
+                setSnackSeverity("error")
             }).finally(() => {
+                setSnackOpen(true)
                 handleUpdateDialog()
                 getAllStudents()
             })
@@ -136,9 +152,14 @@ const Student = () => {
         StudentService.deleteStudent(student.id)
             .then((res) => {
                 console.log(res)
+                setSnackMessage("Delete Success")
+                setSnackSeverity("success")
             }).catch((err) => {
                 console.log(err)
+                setSnackMessage("Delete Failed")
+                setSnackSeverity("error")
             }).finally(() => {
+                setSnackOpen(true)
                 handleDeleteDialog()
                 getAllStudents()
             })
@@ -304,6 +325,7 @@ const Student = () => {
                     <AddIcon sx={{height:50, width:50}} />
                 </Fab>
             </Container>
+            <SnackNotification message={snackMessage} severity={snackSeverity} open={snackOpen} openHandler={setSnackOpen} />
         </div>
     )
 }
