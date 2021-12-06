@@ -16,6 +16,8 @@ public class Student {
 
     private String email;
 
+    private int semester;
+
     @ManyToOne
     @JoinColumn
     private Major major;

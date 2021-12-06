@@ -17,6 +17,7 @@ public class StudentHandlerWithId  extends InjectionHandler {
                     res.getHeaders().set("Access-Control-Allow-Methods", "OPTIONS, GET, POST, DELETE");
                     res.send();
                 })
+                .post(() -> student.seedRandomStudent(id).map(Jackson::json).then(ctx::render))
                 .delete(() -> student.delete(id).map(Jackson::json).then(ctx::render))
                 .get(() -> student.findStudentById(id).map(Jackson::json).then(ctx::render))
         );
