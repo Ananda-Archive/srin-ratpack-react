@@ -5,6 +5,7 @@ package com.srin.myapp;
 
 import com.srin.myapp.dao.MajorDao;
 import com.srin.myapp.dao.StudentDao;
+import com.srin.myapp.handler.CORSHandler;
 import com.srin.myapp.handler.StudentHandler;
 import com.srin.myapp.handler.StudentHandlerWithId;
 import ratpack.guice.Guice;
@@ -19,6 +20,7 @@ public class App {
                         )
                 )
                 .handlers(chain -> chain
+                    .all(new CORSHandler())
                     .prefix("student", studentChain -> studentChain
                         .path(new StudentHandler())
                         .path(":id", new StudentHandlerWithId())
