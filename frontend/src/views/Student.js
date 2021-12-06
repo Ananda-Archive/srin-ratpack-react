@@ -274,7 +274,7 @@ const Student = () => {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleCreateDialog()}>No</Button>
-                        <Button variant="contained" color="primary" onClick={() => createStudent()}>Yes</Button>
+                        <Button variant="contained" disabled={student.name.length==0 || student.email.length==0 || student.semester.length=="" || student.major.id==""}  color="primary" onClick={() => createStudent()}>Yes</Button>
                     </DialogActions>
                 </Dialog>
 
@@ -343,7 +343,7 @@ const Student = () => {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleUpdateDialog()}>No</Button>
-                        <Button variant="contained" color="primary" onClick={() => updateStudent()}>Yes</Button>
+                        <Button disabled={student.name.length==0 || student.email.length==0 || student.semester.length=="" || student.major.id==""}  variant="contained" color="primary" onClick={() => updateStudent()}>Yes</Button>
                     </DialogActions>
                 </Dialog>
 
