@@ -29,7 +29,7 @@ public class MajorDao {
             List<Major> majors = new ArrayList<>();
 
             while(res.next()) {
-                majors.add(new Major(res.getString("name")));
+                majors.add(new Major(res.getLong("id"), res.getString("name")));
             } return Blocking.get(() -> majors);
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());

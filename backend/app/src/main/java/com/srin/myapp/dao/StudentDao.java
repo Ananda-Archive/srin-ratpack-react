@@ -155,8 +155,8 @@ public class StudentDao {
         for(int i=0; i<num; i++) {
             Random random = new Random();
             StudentDto student = new StudentDto();
-            student.setName(randomName.get(random.nextInt(randomName.size())) + randomName.get(random.nextInt(randomName.size())));
-            student.setEmail(student.getName() + "@gmail.com");
+            student.setName(randomName.get(random.nextInt(randomName.size())) +" "+ randomName.get(random.nextInt(randomName.size())));
+            student.setEmail(student.getName().trim() + "@gmail.com");
             student.setSemester((int) ((Math.random()*(9-1)) + 1));
             student.setMajorId( ((Number) (Math.random()*(8-1)+1)).longValue() );
             try {

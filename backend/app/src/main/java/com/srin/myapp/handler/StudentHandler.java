@@ -14,17 +14,11 @@ public class StudentHandler extends InjectionHandler {
 
         ctx.byMethod(byMethodSpec -> byMethodSpec
                 .options(() -> {
-                    res.getHeaders().set("Access-Control-Allow-Methods", "OPTIONS, GET, POST, DELETE");
+                    res.getHeaders().set("Access-Control-Allow-Methods", "OPTIONS, GET, POST, DELETE, PUT");
                     res.send();
                 })
                 .get(() -> {
                     studentDao.findAllStudents().map(Jackson::json).then(ctx::render);
-                })
-                .post(() -> {
-                    ctx.parse(Jackson.fromJson(StudentDto.class))
-                        .flatMap(studentDao::save)
-                        .map(Jackson::json)
-                        .then(ctx::render);
                 })
                 .post(() -> {
                     ctx.parse(Jackson.fromJson(StudentDto.class))
