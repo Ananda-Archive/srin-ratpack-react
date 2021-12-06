@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47e8815c-9ebf-4528-bf53-b48bb9a105f3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/dao/MajorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/dao/MajorDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/dao/StudentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/dao/StudentDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/handler/StudentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/handler/StudentHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/model/Major.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srin/myapp/model/Major.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Navbar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +50,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.srin.myapp.handler" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.srin.myapp.App" />
@@ -74,6 +86,9 @@
       <workItem from="1638515064432" duration="81000" />
       <workItem from="1638515685745" duration="21100000" />
       <workItem from="1638547631474" duration="2364000" />
+      <workItem from="1638765715317" duration="1657000" />
+      <workItem from="1638767736177" duration="686000" />
+      <workItem from="1638772203095" duration="5393000" />
     </task>
     <servers />
   </component>
