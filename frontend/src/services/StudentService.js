@@ -30,6 +30,15 @@ const api = {
         }
     },
 
+    async seedStudents(n) {
+        try {
+            const res = await axios.post(baseUrl + TABLE_NAME + "/" + n, { headers: header })
+            return res.data
+        } catch (err) {
+            return err
+        }
+    },
+
     async updateStudent(student) {
         try {
             let data = {

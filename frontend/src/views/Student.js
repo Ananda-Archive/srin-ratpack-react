@@ -3,7 +3,7 @@ import MajorService from "../services/MajorService"
 import StudentService from "../services/StudentService"
 import TableData from "../components/TableData"
 import SnackNotification from "../components/SnackNotification"
-import { Container, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Box, TextField, Select, MenuItem, FormControl, InputLabel, Grid, Fab } from '@mui/material'
+import { CircularProgress, Backdrop, Container, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Box, TextField, Select, MenuItem, FormControl, InputLabel, Grid, Fab } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 
 const Student = () => {
@@ -53,6 +53,8 @@ const Student = () => {
     const [snackOpen, setSnackOpen] = useState(false)
     const [snackSeverity, setSnackSeverity] = useState("success")
     const [snackMessage, setSnackMessage] = useState("")
+    // Backdrop Event
+    const [openBackdrop, setopenBackdrop] = useState(false)
 
     // =======
 
@@ -113,10 +115,15 @@ const Student = () => {
             .then((res) => setMajors(res))
     }
     const getAllStudents = () => {
+        setopenBackdrop(true)
         StudentService.getAllStudents()
-            .then((res) => setStudents(res))
+            .then((res) => {
+                setopenBackdrop(false)
+                setStudents(res)
+            })
     }
     const createStudent = () => {
+        setopenBackdrop(true)
         StudentService.createStudent(student)
             .then((res) => {
                 console.log(res)
@@ -128,11 +135,31 @@ const Student = () => {
                 setSnackSeverity("error")
             }).finally(() => {
                 setSnackOpen(true)
+                setopenBackdrop(false)
+                handleCreateDialog()
+                getAllStudents()
+            })
+    }
+    const seedStudents = () => {
+        setopenBackdrop(true)
+        StudentService.seedStudents(100)
+            .then((res) => {
+                console.log(res)
+                setSnackMessage("Insert Success: " + res + "/" + "100")
+                setSnackSeverity("success")
+            }).catch((err) => {
+                console.log(err)
+                setSnackMessage("Insert Failed")
+                setSnackSeverity("error")
+            }).finally(() => {
+                setopenBackdrop(false)
+                setSnackOpen(true)
                 handleCreateDialog()
                 getAllStudents()
             })
     }
     const updateStudent = () => {
+        setopenBackdrop(true)
         StudentService.updateStudent(student)
             .then((res) => {
                 console.log(res)
@@ -143,12 +170,14 @@ const Student = () => {
                 setSnackMessage("Update Failed")
                 setSnackSeverity("error")
             }).finally(() => {
+                setopenBackdrop(false)
                 setSnackOpen(true)
                 handleUpdateDialog()
                 getAllStudents()
             })
     }
     const deleteStudent = () => {
+        setopenBackdrop(true)
         StudentService.deleteStudent(student.id)
             .then((res) => {
                 console.log(res)
@@ -159,6 +188,7 @@ const Student = () => {
                 setSnackMessage("Delete Failed")
                 setSnackSeverity("error")
             }).finally(() => {
+                setopenBackdrop(false)
                 setSnackOpen(true)
                 handleDeleteDialog()
                 getAllStudents()
@@ -168,8 +198,17 @@ const Student = () => {
     return (
         <div>
             <Container maxwidth="xl" sx={{pt:4}}>
+                <Backdrop
+                    sx={{ color: '#fff', zIndex: 999999999}}
+                    open={openBackdrop}
+                >
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+
                 <TableData header={tableHeaders} datas={students} dataHandler={handleStudentChance} dialogHandler={handleDialog}></TableData>
                 
+                <Button sx={{my:2}} variant="contained" onClick={() => seedStudents()}>Seed Student Data</Button>
+
                 {/* Create */}
                 <Dialog open={createDialog} onClose={handleCreateDialog} maxWidth="md" fullWidth={true}>
                     <DialogTitle>Create New Student</DialogTitle>
