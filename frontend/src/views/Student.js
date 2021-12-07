@@ -124,7 +124,7 @@ const Student = () => {
     }
     const createStudent = () => {
         setopenBackdrop(true)
-        StudentService.createStudent(student)
+        StudentService.createStudentUsingPromise(student)
             .then((res) => {
                 console.log(res)
                 setSnackMessage("Insert Success")
@@ -160,7 +160,7 @@ const Student = () => {
     }
     const updateStudent = () => {
         setopenBackdrop(true)
-        StudentService.updateStudent(student)
+        StudentService.updateStudentUsingPromise(student)
             .then((res) => {
                 console.log(res)
                 setSnackMessage("Update Success")
@@ -178,13 +178,15 @@ const Student = () => {
     }
     const deleteStudent = () => {
         setopenBackdrop(true)
-        StudentService.deleteStudent(student.id)
+        StudentService.deleteStudentUsingPromise(student.id)
             .then((res) => {
                 console.log(res)
+                console.log("success")
                 setSnackMessage("Delete Success")
                 setSnackSeverity("success")
             }).catch((err) => {
                 console.log(err)
+                console.log("failed")
                 setSnackMessage("Delete Failed")
                 setSnackSeverity("error")
             }).finally(() => {

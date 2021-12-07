@@ -59,6 +59,47 @@ const api = {
         } catch (err) {
             return err
         }
+    },
+
+    createStudentUsingPromise(student) {
+        let data = {
+            ...student, majorId:student.major.id
+        }
+        delete data.major
+        return new Promise((resolve, reject) => {
+            axios.post(baseUrl + TABLE_NAME, data, { headers: header })
+                .then((res) => {
+                    resolve(res.data)
+                }) .catch((err) => {
+                    reject(err)
+                })
+        })
+    },
+
+    updateStudentUsingPromise(student) {
+        let data = {
+            ...student, majorId:student.major.id
+        }
+        delete data.major
+        return new Promise((resolve, reject) => {
+            axios.put(baseUrl + TABLE_NAME, data, { headers: header })
+                .then((res) => {
+                    resolve(res.data)
+                }) .catch((err) => {
+                    reject(err)
+                })
+        })
+    },
+
+    deleteStudentUsingPromise(id) {
+        return new Promise((resolve, reject) => {
+            axios.delete(baseUrl + TABLE_NAME + "/" + id, { headers: header })
+                .then((res) => {
+                    resolve(res.data)
+                }) .catch((err) => {
+                    reject(err)
+                })
+        })
     }
 
 }; export default api

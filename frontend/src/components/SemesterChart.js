@@ -38,7 +38,7 @@ const SemesterChart = ({students}) => {
                     <Pie data={semesters} dataKey="value" nameKey="name"  outerRadius={120} fill="#8884d8"
                     label={
                         (e) => {
-                            return e.name+" "+e.value
+                            return e.name+" - "+e.value+" Students"
                         }
                     } />
                 </PieChart>
